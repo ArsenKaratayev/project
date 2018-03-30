@@ -1,0 +1,50 @@
+﻿<div ng-app="app" ng-controller="createRypController">
+    <select ng-model="Specialty" class="form-control">
+        <option ng-repeat="s in specialtys" value="{{s.id}}">{{s.name}}-{{s.shifr}}</option>
+    </select>
+    <select ng-model="Year" class="form-control">
+        <option value="2018-2019">2018-2019</option>
+        <option value="2019-2020">2019-2020</option>
+        <option value="2020-2021">2020-2021</option>
+    </select>
+    <button ng-click="loadSubjects()" class="btn btn-default">Ок</button>
+    <div ng-show="showSemesters=='t'">
+        <table class="twenpx">
+            <tr class="">
+                <td>
+                    <button class="btnSize btn btn-default" ng-click="pickSemester(1)">1 Семестр</button>
+                    <button class="btnSize btn btn-default" ng-click="pickSemester(2)">2 Семестр</button>
+                    <button class="btnSize btn btn-default" ng-click="pickSemester(3)">3 Семестр</button>
+                    <button class="btnSize btn btn-default" ng-click="pickSemester(4)">4 Семестр</button>
+                    <button class="btnSize btn btn-default" ng-click="pickSemester(5)">5 Семестр</button>
+                    <button class="btnSize btn btn-default" ng-click="pickSemester(6)">6 Семестр</button>
+                    <button class="btnSize btn btn-default" ng-click="pickSemester(7)">7 Семестр</button>
+                    <button class="btnSize btn btn-default" ng-click="pickSemester(8)">8 Семестр</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ng-show="showSubjects=='t'">
+        <h1>Выбранные предметы</h1>
+        <div>
+            <div ng-repeat="s in semester">{{s.name}}</div>
+        </div>
+        <h1>Предметы на выбор</h1>
+        <div>
+            <div ng-repeat="s in subjects" ng-click="addSubjectToSemester(s)">{{s.name}}</div>
+        </div>
+        <div class="form-group">
+            <input ng-click="sendRyp()" type="submit" value="Сохранить" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+<style type="text/css">
+    .btnSize {
+        width: 100px;
+        height: 100px;
+    }
+    .form-control {
+        display: inline-block;
+        width: 200px;
+    }
+</style>

@@ -1,0 +1,38 @@
+﻿<h2>Новый предмет</h2>
+<div ng-app="app" ng-controller="createSubjectController">
+    <form>
+        <div>
+            <div class="form-group">
+                <label>Название</label>
+                <input ng-model="Name" type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Шифр</label>
+                <input ng-model="Shifr" type="text" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Количество лекций</label>
+                <input ng-model="Lec" type="number" class="form-control" />
+            </div>
+             <div class="form-group">
+                <label>Количество лабораторных</label>
+                <input ng-model="Lab" type="number" class="form-control" />
+            </div>
+             <div class="form-group">
+                <label>Количество практик</label>
+                <input ng-model="Pr" type="number" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label>Тип</label><br>
+                <select ng-model="Type" class="form-control">
+                    <option value="Основной">Основной</option>
+                    <option value="Элективный">Элективный</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input ng-click="sendSubject()" type="submit" value="Сохранить" class="btn btn-default" />
+                <a href="/" class="btn btn-default">На главную</a>
+            </div>
+        </div>
+    </form>
+</div>

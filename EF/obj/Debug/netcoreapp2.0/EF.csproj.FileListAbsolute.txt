@@ -1,0 +1,11 @@
+/Users/arsenkaratayev/Documents/dotnet/EF/EF/bin/Debug/netcoreapp2.0/EF.deps.json
+/Users/arsenkaratayev/Documents/dotnet/EF/EF/bin/Debug/netcoreapp2.0/EF.runtimeconfig.json
+/Users/arsenkaratayev/Documents/dotnet/EF/EF/bin/Debug/netcoreapp2.0/EF.runtimeconfig.dev.json
+/Users/arsenkaratayev/Documents/dotnet/EF/EF/bin/Debug/netcoreapp2.0/EF.dll
+/Users/arsenkaratayev/Documents/dotnet/EF/EF/bin/Debug/netcoreapp2.0/EF.pdb
+/Users/arsenkaratayev/Documents/dotnet/EF/EF/obj/Debug/netcoreapp2.0/EF.csproj.CoreCompileInputs.cache
+/Users/arsenkaratayev/Documents/dotnet/EF/EF/obj/Debug/netcoreapp2.0/EF.AssemblyInfoInputs.cache
+/Users/arsenkaratayev/Documents/dotnet/EF/EF/obj/Debug/netcoreapp2.0/EF.AssemblyInfo.cs
+/Users/arsenkaratayev/Documents/dotnet/EF/EF/obj/Debug/netcoreapp2.0/EF.dll
+/Users/arsenkaratayev/Documents/dotnet/EF/EF/obj/Debug/netcoreapp2.0/EF.pdb
+/Users/arsenkaratayev/Documents/dotnet/EF/EF/obj/Debug/netcoreapp2.0/EF.csprojResolveAssemblyReference.cache

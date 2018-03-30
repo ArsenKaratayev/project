@@ -1,0 +1,18 @@
+﻿<Properties StartupConfiguration="{905EC0EF-D203-41FE-988F-8B23814C8EE1}|Default">
+  <MonoDevelop.Ide.Workbench ActiveDocument="EF/Models/MyDbContext.cs">
+    <Files>
+      <File FileName="EF/Startup.cs" Line="78" Column="10" />
+      <File FileName="EF/appsettings.json" Line="5" Column="15" />
+      <File FileName="EF/Models/UserEntity.cs" Line="9" Column="10" />
+      <File FileName="EF/Models/MyUserRole.cs" Line="6" Column="43" />
+      <File FileName="EF/Models/MyDbContext.cs" Line="40" Column="9" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.EF PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+</Properties>
