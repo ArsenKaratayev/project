@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EF.Models
 {
@@ -7,24 +9,20 @@ namespace EF.Models
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public SubjectType Type { get; set; } // obsheobraz, bazovie, profilnie
-        public SubjectHours Hours { get; set; }
         public int Credits { get; set; }
         public string Shifr { get; set; }
-        public List<Subject> Subjects { get; set; }
-        public List<Subject> Prerequisites { get; set; }
-        public User User { get; set; }
+        public int Pr { get; set; }
         public string Date { get; set; }
         public string UpdateDate { get; set; }
+        public int Deleted { get; set; } = 0;
 
-        //public ElectiveGroup(int id, string name, string shifr, List<Subject> subjects)
-        //{
-        //    this.Id = id;
-        //    this.Name = name;
-        //    this.Type = type;
-        //    this.Hours = hours;
-        //    this.Credits = hours.Lec + hours.Lab + hours.Pr;
-        //    this.Shifr = shifr;
-        //}
+        public int TypeId { get; set; }
+        public SubjectType Type { get; set; }
+
+        public string UserId { get; set; }
+
+        public virtual List<SemesterElectiveGroup> SemesterElectiveGroups { get; set; }
+
+        public virtual List<SubjectElectiveGroup> SubjectElectiveGroups { get; set; } = new List<SubjectElectiveGroup>();
     }
 }

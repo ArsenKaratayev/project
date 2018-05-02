@@ -2,16 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using EF.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace EF.Controllers
 {
     [Route("api/[controller]")]
-    [Authorize(Policy = "Bearer")]
-    public class RypsController : Controller
+    //[Authorize(Policy = "Bearer")]
+    public class CheckController : Controller
     {
         // GET: api/values
         [HttpGet]
@@ -31,8 +31,8 @@ namespace EF.Controllers
                     Year = x.Year,
                     OperatorCheck = x.OperatorCheck,
                     FullCheck = x.FullCheck,
-                    Deleted = x.Deleted,
                     Prototype = x.Prototype,
+                    Deleted = x.Deleted,
                     Semesters = x.Semesters.Select(y => new SemesterVM
                     {
                         Subjects = y.SemesterSubjects.Select(z => new SubjectVM
@@ -104,56 +104,26 @@ namespace EF.Controllers
                             }).ToList()
                         }).ToList()
                     }).ToList()
-                }).Where(x => x.Deleted == 0).ToListAsync();
+                }).Where(x => x.FullCheck == 0 && x.Deleted == 0).ToListAsync();
             }
             return Ok(result);
         }
-
         // POST api/values
         [HttpPost]
-        public IActionResult Post([FromBody]RypVM model)
+        //[ValidateAntiForgeryToken]
+        public IActionResult Post([FromBody]int id)
         {
-            using (var ctx = new RypDbContext())
+            using (var context = new RypDbContext())
             {
-                using (var tran = ctx.Database.BeginTransaction())
+                using (var tran = context.Database.BeginTransaction())
                 {
-                    var ryp = new Ryp();
-                    ryp.Name = model.Name;
-                    ryp.Year = model.Year;
-                    ryp.UserId = model.UserId;
-                    ryp.SpecialtyId = model.Specialty.Id;
-                    ryp.Date = DateTime.Now.ToString();
-                    ryp.Prototype = model.Prototype;
+                    var ryp = context.Ryps.FirstOrDefault(x => x.Id == id);
+                    ryp.OperatorCheck = 1;
 
-                    ctx.Ryps.Add(ryp);
-                    ctx.SaveChanges();
-
-                    for (int i = 0; i < 8; i++)
-                    {
-                        var semester = new Semester();
-                        semester.RypId = ryp.Id;
-                        ctx.Semesters.Add(semester);
-                        ctx.SaveChanges();
-                        foreach (var subject in model.Semesters[i].Subjects)
-                        {
-                            var t = new SemesterSubject { SubjectId = subject.Id, SemesterId = semester.Id };
-                            ctx.SemesterSubjects.Add(t);
-                            semester.SemesterSubjects.Add(t);
-                        }
-                        foreach (var electiveGroup in model.Semesters[i].Electives)
-                        {
-                            var t = new SemesterElectiveGroup { ElectiveGroupId = electiveGroup.Id, SemesterId = semester.Id };
-                            ctx.SemesterElectiveGroups.Add(t);
-                            semester.SemesterElectiveGroups.Add(t);
-                        }
-                        ryp.Semesters.Add(semester);
-                    }
-                    ctx.SaveChanges();
+                    context.SaveChanges();
                     tran.Commit();
                 }
             }
-
-
             return Ok();
         }
 
@@ -166,65 +136,9 @@ namespace EF.Controllers
                 using (var tran = context.Database.BeginTransaction())
                 {
                     var ryp = context.Ryps.FirstOrDefault(x => x.Id == id);
-                    ryp.Semesters = context.Semesters.Where(x => x.RypId == ryp.Id).ToList();
-                    ryp.UpdateDate = DateTime.Now.ToString();
-
-                    for (int i = ryp.Semesters.Count; i > 0; i--)
-                    {
-                        ryp.Semesters[i - 1].SemesterSubjects = context.SemesterSubjects.Where(x => x.SemesterId == ryp.Semesters[i - 1].Id).ToList();
-                        ryp.Semesters[i - 1].SemesterElectiveGroups = context.SemesterElectiveGroups.Where(x => x.SemesterId == ryp.Semesters[i - 1].Id).ToList();
-                        for (int j = ryp.Semesters[i - 1].SemesterSubjects.Count; j > 0; j--)
-                        {
-                            context.SemesterSubjects.Remove(ryp.Semesters[i - 1].SemesterSubjects[j - 1]);
-                        }
-                        for (int j = ryp.Semesters[i - 1].SemesterElectiveGroups.Count; j > 0; j--)
-                        {
-                            context.SemesterElectiveGroups.Remove(ryp.Semesters[i - 1].SemesterElectiveGroups[j - 1]);
-                        }
-                        context.Semesters.Remove(ryp.Semesters[i - 1]);
-                    }
-                    context.SaveChanges();
-                    ryp.Semesters = new List<Semester>();
-
-                    for (int i = 0; i < 8; i++)
-                    {
-                        var semester = new Semester();
-                        semester.RypId = ryp.Id;
-                        context.Semesters.Add(semester);
-                        context.SaveChanges();
-                        foreach (var subject in model.Semesters[i].Subjects)
-                        {
-                            var t = new SemesterSubject { SubjectId = subject.Id, SemesterId = semester.Id };
-                            context.SemesterSubjects.Add(t);
-                            semester.SemesterSubjects.Add(t);
-                        }
-                        foreach (var electiveGroup in model.Semesters[i].Electives)
-                        {
-                            var t = new SemesterElectiveGroup { ElectiveGroupId = electiveGroup.Id, SemesterId = semester.Id };
-                            context.SemesterElectiveGroups.Add(t);
-                            semester.SemesterElectiveGroups.Add(t);
-                        }
-                        ryp.Semesters.Add(semester);
-                    }
+                    ryp.OperatorCheck = 0;
 
                     context.SaveChanges();
-                    tran.Commit();
-                }
-            }
-            return Ok();
-        }
-
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
-        {
-            using (var context = new RypDbContext())
-            {
-                using (var tran = context.Database.BeginTransaction())
-                {
-                    var ryp = await context.Ryps.FirstOrDefaultAsync(x => x.Id == id);
-                    ryp.Deleted = 1;
-                    await context.SaveChangesAsync();
                     tran.Commit();
                 }
             }

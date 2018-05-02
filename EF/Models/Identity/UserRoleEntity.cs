@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Identity;
 
 namespace EF.Models
 {
-    public class MyUserRole : IdentityRole
+    public class UserRoleEntity : IdentityRole
     {
-        public MyUserRole()
+        public UserRoleEntity()
         {
         }
     }

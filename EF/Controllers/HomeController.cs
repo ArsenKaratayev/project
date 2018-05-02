@@ -14,5 +14,19 @@ namespace EF.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+        //public void AddDisk(int disk) {
+        //    this.disks.push(disk);
+        //}
+        //public void MoveTo(Tower t)
+        //{
+        //    int disk = this.disks.pop();
+        //    this.AddDisk(disk);
+        //}
+        //public void MoveDIsks(int n, Tower t1, Tower t2) {
+        //    MoveDIsks(n - 1, t1, t2);
+        //    MoveTo(t2);
+        //    t2.MoveDIsks(n - 1, t1, t2);
+        //}
     }
 }
