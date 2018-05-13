@@ -13785,13 +13785,13 @@
       "projectName": "Project",
       "projectPath": "/Users/arsenkaratayev/Documents/dotnet/EF/EF/Project.csproj",
       "packagesPath": "/Users/arsenkaratayev/.nuget/packages/",
-      "outputPath": "/Users/arsenkaratayev/Documents/dotnet/EF/EF/obj/",
+      "outputPath": "/Users/arsenkaratayev/Documents/dotnet/EF/EF/obj",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "/usr/local/share/dotnet/sdk/NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "/Users/arsenkaratayev/.nuget/NuGet/NuGet.Config"
+        "/Users/arsenkaratayev/.config/NuGet/NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp2.0"
@@ -13813,50 +13813,51 @@
     "frameworks": {
       "netcoreapp2.0": {
         "dependencies": {
-          "Microsoft.AspNetCore.All": {
+          "Microsoft.NETCore.App": {
+            "suppressParent": "All",
             "target": "Package",
-            "version": "[2.0.6, )"
+            "version": "2.0",
+            "autoReferenced": true
           },
           "Microsoft.AspNetCore.Identity": {
             "target": "Package",
-            "version": "[2.0.2, )"
+            "version": "2.0.2"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[2.0.2, )"
-          },
-          "Microsoft.EntityFrameworkCore": {
-            "target": "Package",
-            "version": "[2.0.2, )"
-          },
-          "Microsoft.EntityFrameworkCore.Design": {
-            "target": "Package",
-            "version": "[2.0.2, )"
+            "version": "2.0.2"
           },
           "Microsoft.EntityFrameworkCore.Sqlite": {
             "target": "Package",
-            "version": "[2.0.2, )"
+            "version": "2.0.2"
           },
           "Microsoft.IdentityModel.Tokens": {
             "target": "Package",
-            "version": "[5.2.1, )"
+            "version": "5.2.1"
           },
-          "Microsoft.NETCore.App": {
+          "Microsoft.EntityFrameworkCore.Design": {
             "target": "Package",
-            "version": "[2.0.0, )",
-            "autoReferenced": true
+            "version": "2.0.2"
           },
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
-            "version": "[2.0.0, )"
+            "version": "2.0.0"
+          },
+          "Microsoft.AspNetCore.All": {
+            "target": "Package",
+            "version": "2.0.6"
+          },
+          "Microsoft.EntityFrameworkCore": {
+            "target": "Package",
+            "version": "2.0.2"
           },
           "MongoDB.Driver": {
             "target": "Package",
-            "version": "[2.5.0, )"
+            "version": "2.5.0"
           },
           "MongoDB.Driver.GridFS": {
             "target": "Package",
-            "version": "[2.5.0, )"
+            "version": "2.5.0"
           }
         },
         "imports": [
